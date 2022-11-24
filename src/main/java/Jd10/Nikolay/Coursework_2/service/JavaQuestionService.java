@@ -3,44 +3,45 @@ package Jd10.Nikolay.Coursework_2.service;
 import Jd10.Nikolay.Coursework_2.model.Question;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class JavaQuestionService implements QuestionService {
+    private final Random random = new Random();
+    private final JavaQuestionRepository javaQuestions;
 
-//    private Set<Question> javaQuestions;
-//
-//    public JavaQuestionService() {
-//        this.javaQuestions = new HashSet<>();
-//    }
+    public JavaQuestionService(JavaQuestionRepository javaQuestions) {
+        this.javaQuestions = javaQuestions;
+    }
 
     @Override
     public Question add(String question, String answer) {
-        return null;
+        Question questionToAdd = new Question(question, answer);
+        javaQuestions.add(questionToAdd);
+        return questionToAdd;
     }
 
     @Override
     public Question add(Question question) {
-        return null;
+        javaQuestions.add(question);
+        return question;
     }
 
     @Override
     public Question remove(Question question) {
-        return null;
+        javaQuestions.remove(question);
+        return question;
     }
 
     @Override
     public Collection<Question> getAll() {
-        return null;
+        return javaQuestions.getAll();
     }
 
     @Override
     public Question getRandomQuestion() {
-        //Реализация метода getRandomQuestion осуществляется с помощью класса Random и его метода nextInt,
-        // который в качестве параметра принимает максимальное число,
-        // а затем возвращает вам результат в виде случайного числа от 0 до максимального числа из параметров (не включительно).
-        return null;
+        List<Question> questions = new ArrayList<>(javaQuestions.getAll());
+        return questions.get(random.nextInt(questions.size()));
     }
 }
