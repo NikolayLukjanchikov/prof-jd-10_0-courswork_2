@@ -41,6 +41,13 @@ public class MathQuestionRepository implements QuestionRepository {
     }
 
     @Override
+    public Question add(String question, String answer) {
+        Question questionToAdd = new Question(question, answer);
+        mathQuestions.add(questionToAdd);
+        return questionToAdd;
+    }
+
+    @Override
     public Question remove(Question question) {
         mathQuestions.remove(question);
         return question;

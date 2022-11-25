@@ -1,21 +1,23 @@
 package Jd10.Nikolay.Coursework_2.service;
 
 import Jd10.Nikolay.Coursework_2.model.Question;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-//@Qualifier("javaQuestionService")
 public class JavaQuestionService implements QuestionService {
-    private final Random random = new Random();
+//    private final Random random = new Random();
     private final JavaQuestionRepository javaQuestions;
 
     public JavaQuestionService(JavaQuestionRepository javaQuestions) {
         this.javaQuestions = javaQuestions;
     }
+    public Random makeRandom() {
+        return new Random();
+    }
 
+    Random random = makeRandom();
     @Override
     public Question add(String question, String answer) {
         Question questionToAdd = new Question(question, answer);

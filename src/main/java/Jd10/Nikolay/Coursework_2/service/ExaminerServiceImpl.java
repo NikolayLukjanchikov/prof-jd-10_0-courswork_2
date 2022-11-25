@@ -10,7 +10,7 @@ import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    public Random random = new Random();
+
 
     public QuestionService jQuestionService;
     public QuestionService mQuestionService;
@@ -21,7 +21,9 @@ public class ExaminerServiceImpl implements ExaminerService {
         this.jQuestionService = jQuestionService;
         this.mQuestionService = mQuestionService;
     }
-
+    public Random makeRandom() {
+        return new Random();
+    }
 
     @Override
     public Collection<Question> getQuestions(int amount) {
@@ -30,13 +32,13 @@ public class ExaminerServiceImpl implements ExaminerService {
         }
         Set<Question> questions = new HashSet<>();
         while (questions.size() < amount) {
-            if (random.nextInt(2) == 1) {
+           // if (random.nextInt(2) == 1) {
                 questions.add(jQuestionService.getRandomQuestion());
-            } else {
+          //  } else {
                 questions.add(mQuestionService.getRandomQuestion());
-            }
+          //  }
         }
-        return Collections.unmodifiableCollection(questions);
+        return questions;
     }
 
 }

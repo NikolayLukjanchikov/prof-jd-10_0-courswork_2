@@ -37,6 +37,12 @@ public class JavaQuestionRepository implements QuestionRepository {
         javaQuestions.add(question);
         return question;
     }
+    @Override
+    public Question add(String question, String answer) {
+        Question questionToAdd = new Question(question, answer);
+        javaQuestions.add(questionToAdd);
+        return questionToAdd;
+    }
 
     @Override
     public Question remove(Question question) {
